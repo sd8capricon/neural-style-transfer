@@ -3,10 +3,6 @@ from config import num_style_layers, num_content_layers, style_weight, content_w
 from helpers import gram_matrix, clip_0_1
 
 
-# for layer in vgg.layers:
-#     print(layer)
-
-
 def vgg_layers(layer_names):
     vgg = tf.keras.applications.VGG19(include_top=False, weights="imagenet")
     vgg.trainable = False
@@ -36,6 +32,7 @@ class Extractor(tf.keras.models.Model):
         style_outputs = outputs[: self.num_style_layers]
         content_outputs = outputs[self.num_style_layers :]
 
+        # Calculate Gij
         style_outputs = [gram_matrix(output) for output in style_outputs]
 
         content_dict = {
@@ -57,6 +54,8 @@ opt = tf.keras.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1)
 def style_content_loss(outputs, style_targets, content_targets):
     style_outputs = outputs["style"]
     content_outputs = outputs["content"]
+
+    # style_loss = Mean Squared Error of Gij and Aij
     style_loss = tf.add_n(
         [
             tf.reduce_mean((style_outputs[name] - style_targets[name]) ** 2)
@@ -65,6 +64,7 @@ def style_content_loss(outputs, style_targets, content_targets):
     )
     style_loss *= style_weight / num_style_layers
 
+    # content_loss = Measn Squared Error of Fij and Pij
     content_loss = tf.add_n(
         [
             tf.reduce_mean((content_outputs[name] - content_targets[name]) ** 2)
@@ -72,14 +72,15 @@ def style_content_loss(outputs, style_targets, content_targets):
         ]
     )
     content_loss *= content_weight / num_content_layers
+
+    # Total Loss
     loss = style_loss + content_loss
     return loss
 
 
-#
-# @tf.function
 def train_step(extractor, image: tf.Variable, style_targets, content_targets):
     with tf.GradientTape() as tape:
+        # get feauture representations
         outputs = extractor(image)
         loss = style_content_loss(outputs, style_targets, content_targets)
 

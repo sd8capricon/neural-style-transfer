@@ -17,7 +17,7 @@ image = tf.Variable(content_image)
 
 start = time.time()
 
-epochs = 10
+epochs = 2
 steps_per_epoch = 100
 
 step = 0
