@@ -23,14 +23,6 @@ def gram_matrix(input_tensor):
     return gram_matrix
 
 
-# Google's Implementation
-# def gram_matrix(input_tensor):
-#     result = tf.linalg.einsum("bijc,bijd->bcd", input_tensor, input_tensor)
-#     input_shape = tf.shape(input_tensor)
-#     num_locations = tf.cast(input_shape[1] * input_shape[2], tf.float32)
-#     return result / (num_locations)
-
-
 # Since Image is  flot
 def clip_0_1(image):
     return tf.clip_by_value(image, clip_value_min=0.0, clip_value_max=1.0)

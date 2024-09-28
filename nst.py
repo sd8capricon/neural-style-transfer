@@ -4,8 +4,8 @@ from config import style_layers, content_layers
 from util import load_img, imshow
 from model import Extractor, train_step
 
-content_image = load_img("images/labrador.jpg")
-style_image = load_img("images/vassily.jpg")
+content_image = load_img("images/content/dancing.jpg")
+style_image = load_img("images/styles/picasso.jpg")
 
 extractor = Extractor(style_layers, content_layers)
 
@@ -17,7 +17,7 @@ image = tf.Variable(content_image)
 
 start = time.time()
 
-epochs = 2
+epochs = 10
 steps_per_epoch = 100
 
 step = 0
