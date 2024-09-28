@@ -12,10 +12,10 @@ This project implements **Neural Style Transfer (NST)** using a pre-trained VGG1
 
 ## Outputs
 
-| Content Image                                 | Style Image                                | Output Image                               |
-| --------------------------------------------- | ------------------------------------------ | ------------------------------------------ |
-| ![Content Image](images/content/dancing.jpg)  | ![Style Image](images/styles/picasso.jpg)  | ![Output Image](out/dancing+picasso.jpg)   |
-| ![Content Image](images/content/labrador.jpg) | ![Style Image](images/styles/van_gogh.jpg) | ![Output Image](out/labrador+van_gogh.jpg) |
+| Content Image                                                           | Style Image                                                          | Output Image                               |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
+| <img alt="Content Image" src="images/content/dancing.jpg" width=224 />  | <img alt="Style Image" src="images/styles/picasso.jpg" width=224 />  | ![Output Image](out/dancing+picasso.jpg)   |
+| <img alt="Content Image" src="images/content/labrador.jpg" width=224 /> | <img alt="Style Image" src="images/styles/van_gogh.jpg" width=224 /> | ![Output Image](out/labrador+van_gogh.jpg) |
 
 
 ## Running the Project
