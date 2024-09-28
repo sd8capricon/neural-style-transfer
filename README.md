@@ -30,6 +30,7 @@ cd neural-style-transfer
 ```
 
 ### 2. Install Dependencies 
+
 ```bash
 # Create a virtual environment (optional)
 python -m venv venv
@@ -44,10 +45,18 @@ pip install -r requirements.txt
 ```
 
 ### 3. Prepare Images
+
 Save your content and style images in the images/content/ and images/styles/ directories, respectively.
 
 ### 4. Run the Style Tranfer
+
 Run the nst.py script to generate the stylized image:
 ```bash
 python nst.py
 ```
+
+## Reference:
+
+A Neural Algorithm of Artistic Style.\
+Leon A. Gatys, Alexander S. Ecker, Matthias Bethge (2015).\
+*arXiv*. [https://doi.org/10.48550/arXiv.1508.06576](https://doi.org/10.48550/arXiv.1508.06576)
